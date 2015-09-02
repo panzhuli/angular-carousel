@@ -64,6 +64,21 @@ You can add position indicators by adding this directive where you want :
  - `slides` is the same collection you use in the carousel ng-repeat
  - `carouselIndex` is the same index you've defined for the carousel
 
+## Events :
+ This version of the carousel will broadcast events:
+
+ - `'slideChangeBegin'` and `'slideChangeEnd'` with param `{ 'slideIndex': int }`
+ - you can capture these events like so:
+
+ `    $rootScope.$on('slideChangeBegin', function(event, args) {
+        console.log(args.slideIndex);
+    });`
+
+
+    `$rootScope.$on('slideChangeEnd', function(event, args) {
+        console.log(args.slideIndex);
+    });`
+
 ## Notes :
  - if you use IE<=9, iOS<7 or Android<4 please include the [requestAnimationFrame polyfill](https://github.com/darius/requestAnimationFrame/blob/master/requestAnimationFrame.js) in your application.
  - if you use IE<=8 include the [es5-shim polyfill](https://github.com/es-shims/es5-shim/blob/master/es5-shim.min.js) in your application.

@@ -119,8 +119,8 @@
         };
     })
 
-    .directive('rnCarousel', ['$swipe', '$window', '$document', '$parse', '$compile', '$timeout', '$interval', 'computeCarouselSlideStyle', 'createStyleString', 'Tweenable',
-        function($swipe, $window, $document, $parse, $compile, $timeout, $interval, computeCarouselSlideStyle, createStyleString, Tweenable) {
+    .directive('rnCarousel', ['$swipe', '$window', '$document', '$parse', '$compile', '$timeout', '$interval', '$rootScope', 'computeCarouselSlideStyle', 'createStyleString', 'Tweenable',
+        function($swipe, $window, $document, $parse, $compile, $timeout, $interval, $rootScope, computeCarouselSlideStyle, createStyleString, Tweenable) {
             // internal ids to allow multiple instances
             var carouselId = 0,
                 // in absolute pixels, at which distance the slide stick to the edge on release
@@ -270,6 +270,7 @@
                         function goToSlide(index, slideOptions) {
                             //console.log('goToSlide', arguments);
                             // move a to the given slide index
+                            $rootScope.$broadcast('slideChangeBegin', { 'slideIndex': arguments[0] });
                             if (index === undefined) {
                                 index = scope.carouselIndex;
                             }
@@ -302,6 +303,7 @@
                                         scope.carouselIndex = index;
                                         offset = index * -100;
                                         updateBufferIndex();
+                                        $rootScope.$broadcast('slideChangeEnd', { 'slideIndex': index });
                                         $timeout(function () {
                                           locked = false;
                                         }, 0, false);
