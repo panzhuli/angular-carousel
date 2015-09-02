@@ -1,6 +1,6 @@
 /**
  * Angular Carousel - Mobile friendly touch carousel for AngularJS
- * @version v0.3.13 - 2015-06-15
+ * @version v0.3.13 - 2015-09-02
  * @link http://revolunet.github.com/angular-carousel
  * @author Julien Bouquillon <julien@revolunet.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -198,8 +198,8 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
         };
     })
 
-    .directive('rnCarousel', ['$swipe', '$window', '$document', '$parse', '$compile', '$timeout', '$interval', 'computeCarouselSlideStyle', 'createStyleString', 'Tweenable',
-        function($swipe, $window, $document, $parse, $compile, $timeout, $interval, computeCarouselSlideStyle, createStyleString, Tweenable) {
+    .directive('rnCarousel', ['$swipe', '$window', '$document', '$parse', '$compile', '$timeout', '$interval', '$rootScope', 'computeCarouselSlideStyle', 'createStyleString', 'Tweenable',
+        function($swipe, $window, $document, $parse, $compile, $timeout, $interval, $rootScope, computeCarouselSlideStyle, createStyleString, Tweenable) {
             // internal ids to allow multiple instances
             var carouselId = 0,
                 // in absolute pixels, at which distance the slide stick to the edge on release
@@ -349,6 +349,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
                         function goToSlide(index, slideOptions) {
                             //console.log('goToSlide', arguments);
                             // move a to the given slide index
+                            $rootScope.$broadcast('slideChangeBegin', { 'slideIndex': arguments[0] });
                             if (index === undefined) {
                                 index = scope.carouselIndex;
                             }
@@ -381,6 +382,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
                                         scope.carouselIndex = index;
                                         offset = index * -100;
                                         updateBufferIndex();
+                                        $rootScope.$broadcast('slideChangeEnd', { 'slideIndex': index });
                                         $timeout(function () {
                                           locked = false;
                                         }, 0, false);
