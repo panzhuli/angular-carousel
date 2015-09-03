@@ -269,6 +269,7 @@
 
                         function goToSlide(index, slideOptions) {
                             //console.log('goToSlide', arguments);
+                            $rootScope.$broadcast('slideChangeBegin', { 'slideIndex': arguments[0] });
                             // move a to the given slide index
                             $rootScope.$broadcast('slideChangeBegin', { 'slideIndex': arguments[0] });
                             if (index === undefined) {
