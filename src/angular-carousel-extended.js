@@ -8,5 +8,5 @@ http://github.com/revolunet/angular-carousel
 
 angular.module('angular-carousel-extended', [
     'ngTouch',
-    'angular-carousel.shifty'
+    'angular-carousel-extended.shifty'
 ]);
