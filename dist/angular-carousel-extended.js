@@ -1,8 +1,8 @@
 /**
- * Angular Carousel - Mobile friendly touch carousel for AngularJS
- * @version v0.3.13 - 2015-09-02
- * @link http://revolunet.github.com/angular-carousel
- * @author Julien Bouquillon <julien@revolunet.com>
+ * Extended version of Angular Carousel - Mobile friendly touch carousel for AngularJS
+ * @version v0.3.16 - 2015-09-03
+ * @link 
+ * @author 
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 /*global angular */
@@ -13,12 +13,12 @@ http://github.com/revolunet/angular-carousel
 
 */
 
-angular.module('angular-carousel', [
+angular.module('angular-carousel-extended', [
     'ngTouch',
     'angular-carousel.shifty'
 ]);
 
-angular.module('angular-carousel')
+angular.module('angular-carousel-extended')
 
 .directive('rnCarouselAutoSlide', ['$interval', function($interval) {
   return {
@@ -50,7 +50,7 @@ angular.module('angular-carousel')
   };
 }]);
 
-angular.module('angular-carousel')
+angular.module('angular-carousel-extended')
 
 .directive('rnCarouselIndicators', ['$parse', function($parse) {
   return {
@@ -69,7 +69,7 @@ angular.module('angular-carousel')
   };
 }]);
 
-angular.module('angular-carousel').run(['$templateCache', function($templateCache) {
+angular.module('angular-carousel-extended').run(['$templateCache', function($templateCache) {
   $templateCache.put('carousel-indicators.html',
       '<div class="rn-carousel-indicator">\n' +
         '<span ng-repeat="slide in slides" ng-class="{active: $index==index}" ng-click="goToSlide($index)">●</span>' +
@@ -80,7 +80,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
 (function() {
     "use strict";
 
-    angular.module('angular-carousel')
+    angular.module('angular-carousel-extended')
 
     .service('DeviceCapabilities', function() {
 
@@ -458,8 +458,8 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
                             var canloop = ((isRepeatBased ? scope[repeatCollection.replace('::', '')].length : currentSlides.length) > 1) ? angular.isDefined(tAttributes['rnCarouselControlsAllowLoop']) : false;
                             var nextSlideIndexCompareValue = isRepeatBased ? repeatCollection.replace('::', '') + '.length - 1' : currentSlides.length - 1;
                             var tpl = '<div class="rn-carousel-controls">\n' +
-                                '  <span class="rn-carousel-control rn-carousel-control-prev" ng-click="prevSlide()" ng-if="carouselIndex > 0 || ' + canloop + '"></span>\n' +
-                                '  <span class="rn-carousel-control rn-carousel-control-next" ng-click="nextSlide()" ng-if="carouselIndex < ' + nextSlideIndexCompareValue + ' || ' + canloop + '"></span>\n' +
+                                    '<button class="rn-carousel-control rn-carousel-control-prev" ng-click="prevSlide()" ng-disabled="carouselIndex < 1 || ' + canloop + '"></button>\n' +
+                                    '<button class="rn-carousel-control rn-carousel-control-next" ng-click="nextSlide()" ng-disabled="carouselIndex >= ' + nextSlideIndexCompareValue + ' || ' + canloop + '"></button>\n' +
                                 '</div>';
                             iElement.parent().append($compile(angular.element(tpl))(scope));
                         }
@@ -655,7 +655,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
 
                         function onOrientationChange() {
                             updateContainerWidth();
-                            goToSlide();
+                            // goToSlide(); << not sure why this was here
                         }
 
                         // handle orientation change
@@ -677,7 +677,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
 
 
 
-angular.module('angular-carousel.shifty', [])
+angular.module('angular-carousel-extended.shifty', [])
 
 .factory('Tweenable', function() {
 
@@ -2084,7 +2084,7 @@ angular.module('angular-carousel.shifty', [])
 (function() {
     "use strict";
 
-    angular.module('angular-carousel')
+    angular.module('angular-carousel-extended')
 
     .filter('carouselSlice', function() {
         return function(collection, start, size) {

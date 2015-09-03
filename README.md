@@ -1,20 +1,18 @@
-# AngularJS Touch Carousel
+# AngularJS Touch Carousel Extended - forked whole hog from [revolunet/angular-carousel](https://github.com/revolunet/angular-carousel) with some minor adjustments, including:
+
+- adds events to pre and post slide changes
+- uses <button> element for prev/next buttons to disable them instead of hiding them for better styling options
+
+NOTE: THIS IS A WORK IN PROGRESS FOR AN ACTIVE PROJECT. INTENTION IS TO CREATE PULL REQUESTS TO ORIGINAL REPO
 
 An AngularJS carousel implementation optimised for mobile devices.
-
-Demo : http://revolunet.github.io/angular-carousel
-
-Comments and contributions welcome :)
-
-Proudly brought to you by the [@revolunet](http://twitter.com/revolunet) team.
-
 
 ## Usage :
 
  - If you use bower, just `bower install angular-carousel`. If not, download files [from the github repo](./dist)
- - Add `angular-touch.js`, `angular-carousel.css`, and `angular-carousel.js` to your code:
+ - Add `angular-touch.js`, `angular-carousel-extended.css`, and `angular-carousel.js` to your code:
 ```html
-<link href="angular-carousel.css" rel="stylesheet" type="text/css" />
+<link href="angular-carousel-extended.css" rel="stylesheet" type="text/css" />
 <script src="angular.js"></script>
 <script src="angular-touch.js"></script>
 <script src="angular-carousel.js"></script>

@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    angular.module('angular-carousel')
+    angular.module('angular-carousel-extended')
 
     .service('DeviceCapabilities', function() {
 
@@ -379,8 +379,8 @@
                             var canloop = ((isRepeatBased ? scope[repeatCollection.replace('::', '')].length : currentSlides.length) > 1) ? angular.isDefined(tAttributes['rnCarouselControlsAllowLoop']) : false;
                             var nextSlideIndexCompareValue = isRepeatBased ? repeatCollection.replace('::', '') + '.length - 1' : currentSlides.length - 1;
                             var tpl = '<div class="rn-carousel-controls">\n' +
-                                '  <span class="rn-carousel-control rn-carousel-control-prev" ng-click="prevSlide()" ng-if="carouselIndex > 0 || ' + canloop + '"></span>\n' +
-                                '  <span class="rn-carousel-control rn-carousel-control-next" ng-click="nextSlide()" ng-if="carouselIndex < ' + nextSlideIndexCompareValue + ' || ' + canloop + '"></span>\n' +
+                                    '<button class="rn-carousel-control rn-carousel-control-prev" ng-click="prevSlide()" ng-disabled="carouselIndex < 1 || ' + canloop + '"></button>\n' +
+                                    '<button class="rn-carousel-control rn-carousel-control-next" ng-click="nextSlide()" ng-disabled="carouselIndex >= ' + nextSlideIndexCompareValue + ' || ' + canloop + '"></button>\n' +
                                 '</div>';
                             iElement.parent().append($compile(angular.element(tpl))(scope));
                         }
@@ -576,7 +576,7 @@
 
                         function onOrientationChange() {
                             updateContainerWidth();
-                            goToSlide();
+                            // goToSlide(); << not sure why this was here
                         }
 
                         // handle orientation change

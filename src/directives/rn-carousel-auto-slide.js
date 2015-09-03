@@ -1,4 +1,4 @@
-angular.module('angular-carousel')
+angular.module('angular-carousel-extended')
 
 .directive('rnCarouselAutoSlide', ['$interval', function($interval) {
   return {
