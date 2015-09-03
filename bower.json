@@ -1,7 +1,7 @@
 {
   "name": "angular-carousel-extended",
   "description": "Angular Carousel - Mobile friendly touch carousel for AngularJS",
-  "version": "0.3.13",
+  "version": "0.3.16",
   "homepage": "http://revolunet.github.com/angular-carousel-extended",
   "author": "Julien Bouquillon <julien@revolunet.com>, extended by panzhuli <https://github.com/panzhuli>",
   "repository": {
