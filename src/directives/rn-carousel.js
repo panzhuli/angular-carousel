@@ -382,7 +382,11 @@
                                     '<button class="rn-carousel-control rn-carousel-control-prev" ng-click="prevSlide()" ng-disabled="carouselIndex < 1 || ' + canloop + '"></button>\n' +
                                     '<button class="rn-carousel-control rn-carousel-control-next" ng-click="nextSlide()" ng-disabled="carouselIndex >= ' + nextSlideIndexCompareValue + ' || ' + canloop + '"></button>\n' +
                                 '</div>';
-                            iElement.parent().append($compile(angular.element(tpl))(scope));
+                            var controlsContainer = iElement.parent();
+                            if (iAttributes.rnCarouselControlsContainerId!==undefined){
+                                controlsContainer = angular.element(document.querySelector('#' + iAttributes.rnCarouselControlsContainerId));
+                            }
+                            controlsContainer.append($compile(angular.element(tpl))(scope));
                         }
 
                         if (iAttributes.rnCarouselAutoSlide!==undefined) {
